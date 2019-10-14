@@ -21,7 +21,7 @@
  */
 
 /* v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v GENERIC v v v v */
-@-moz-document domain("swarm.*.com") {
+@-moz-document regexp(".*swarm\\..*\\.com.*") { /* apply to all swarm.whatever.com pages */
 	body {
 		color: #DDD;
 		background-color: bkgCol;

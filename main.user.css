@@ -1,0 +1,278 @@
+/* ==UserStyle==
+@name         Kowbell's Swarm Dark
+@description  Dark theme for P4 Swarm
+@version      0.1.0
+@license      MIT-0
+
+@namespace    https://gitlab.com/Kowbell/
+@author       DJ Schilens foo@bar.com (foobar.com)
+@homepageURL  https://gitlab.com/Kowbell/p4swarmdark
+
+
+@preprocessor stylus
+
+@var color bkgCol "Default Background Color" #222222
+
+==/UserStyle== */
+
+/**
+ * From arvatarox's "Swarm Dark"
+ * https://userstyles.org/styles/166448/swarm-dark
+ * 
+ * See also https://github.com/openstyles/stylus/wiki/UserCSS-authors
+ */
+
+/* v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v GENERIC v v v v */
+@-moz-document domain("swarm.*.com") {
+	body {
+		color: #DDD;
+		background-color: bkgCol;
+	}
+
+	.login-panel {
+		background-color: #222C;
+	}
+
+	/** 
+	 * Most icons are dark gray, so they're hard to see on the dark background.
+	 * This doesn't work in IE or Opera, but should work in FF/Chrome/Safari.
+	 *
+	 * .swarm-icon covers MOST icons, though not all, hence the extra .icon classes here
+	 */
+	i {
+		-webkit-filter: invert(1);
+		filter: invert(1);
+	} /* invert all icons */
+
+	/** Colored icons, like the upvote/downvotes & flagged-as-task icons, should NOT be inverted! */
+	.icon-task-open, .icon-task-addressed, .icon-task-verified,
+	.icon-file-add, .icon-file-edit, .icon-file-delete, 
+	.icon-post-review, .icon-pre-review, .icon-comment-unread,
+	.icon-vote-up, .icon-vote-down, .icon-required-reviewer,
+	.icon-vote-up-stale, icon-vote-down-stale,
+	.icon-white
+	{
+		-webkit-filter: invert(0);
+		filter: invert(0);
+	} /* dont invert colored icons */
+
+	.btn {
+		background-color: #444;
+		color: #EEE;
+	}
+
+	.dropdown-menu {
+		background-color: #111;
+	}
+	.dropdown-menu > li > a {
+		color: #CCC;
+	}
+
+	textarea {
+		background-color: #191919;
+		color: #EEE;
+	}
+
+	/* ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ GENERIC ^ ^ ^ ^ */
+
+	/* v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v REVIEWS v v v v */
+
+
+	/** Nested review comments should have alternating colors */
+	.comments-container .comment-replies .comment-replies-wrapper.odd {
+		background-color: #333;
+	}
+	.comments-container .comment-replies .comment-replies-wrapper.even {
+		background-color: bkgCol;
+	}
+
+	/** Review summary box header/footer */
+	.popover.change-info .popover-title, .popover.change-info .popover-footer {
+		background-color: #333;
+	}
+
+	/** The header for the file-preview-dropdown area */
+	.review-wrapper .version-summary {
+		background-color: #333;
+	}
+
+	/** Comments marked read */
+	.comments-container .comments-table tr.read:not(.closed) td.comment-summary {
+		background-color: #444;
+	}
+
+	/** inlined code in review comments, 
+	 * e.g. "this is my comment text `code code code` blah" */
+	code {
+		border: 1px solid #666;
+		background-color: #333;
+		color: rgb(137, 210, 255); /* vs code default 😎 */
+		padding: 1px 4px;
+		font-size: 11px; /* there's some padding, so shrink the text */
+	}
+
+	.nav-tabs > .active > a, 
+	.nav-tabs > .active > a:hover, 
+	.nav-tabs > .active > a:focus,
+	.nav-tabs > a, .nav-tabs > a:hover,
+	.nav-tabs > a:focus {
+		background-color: bkgCol;
+		color: inherit;
+	}
+
+	/** * * * * * * * * * REVIEW: DIFF VIEWS * * * * * * * * * **/
+	/** TODO BORDERS */
+
+	/** I dont think this does anything */
+	/*.diff-body.diff-sideways {
+		background-color: #444;
+	}*/
+
+	/**
+	/** 
+	 * The "filler" bars in the frame around code previews,
+	 * i.e. all the spaces between those "show one more line above/below"
+	 * buttons
+	 */
+	.diff-body tr.diff-type-meta {
+		background-color: bkgCol;
+	}
+	/** The "show one more line above/below" buttons */
+	.diff-body .context-controls .context-icon-container {
+		background-color: bkgCol;
+	}
+	.diff-footer {
+		background-color: bkgCol;
+	}
+	/** archived comments header/button */
+	.comments-container .closed-comments-header {
+		background-color: #444;
+	}
+
+	/** The numbers on the top-right of the changelist,
+	 * for lines edited/added/removed */
+	.file-metrics b {
+		color: #DDD;
+	}
+
+	/** Per-file seperator lines in the changelist view */
+	.diff-wrapper .diff-header, .diff-wrapper .filename, 
+	.diff-wrapper .diff-header-affix > .swarm-icon, 
+	.diff-wrapper .btn-file-read.active
+	{
+		border-top-color: #444;
+	}
+
+	/** Comments Entry */
+	.comments-container .comment-form .textarea-wrapper, 
+	.comments-container .comment-form textarea {
+		background-color: #191919;
+		color: #EEE;
+	}
+
+	/** Diff View content */                                          /** Diff View content */
+	.diff-body.diff-sideways .diff-table {                            /** Code lines */
+		background-color: bkgCol;
+		color: #CCC;
+	}
+	.diff-body .line-num {                                            /** Line numbers */
+		background-color: bkgCol;
+	}
+	.table .table {                                                   /** inline review comments */
+		background-color: bkgCol;
+	}
+	/** Diff View content */                                          /** Diff View content */
+
+
+
+
+	/** Highlight lines when you mouse over them */                   /** Mouse-Over Highlights */
+	.diff-body table tr.diff.diff-content:hover td {                  /** Code lines */
+		background-color: #111 !important; /** MUST BE !important */
+	}
+	.diff-body table tr.diff.diff-content:hover td.line-num {         /** Line numbers */
+		color: #DDD;
+	}
+	/** Highlight lines when you mouse over them */                   /** Mouse-Over Highlights */
+
+	/** COLORED LINES FOR ADD/DELETE */
+	/** TODO THESE COLORS SUCK */
+	.diff-body .diff-type-delete .line-value {
+		background-color: #533;
+	}
+	.diff-body .diff-type-delete.diff-type-edit .line-value, 
+	.diff-body.right-side .diff-type-delete .line-value {
+		background-color: #744;
+	}
+	/** Lines marked as add */
+	.diff-body .diff-type-add .line-value {
+		background-color: #353;
+	}
+	/** Lines marked as add - left side (lighter) */
+	.diff-body .diff-type-add.diff-type-edit .line-value, 
+	.diff-body.left-side .diff-type-add .line-value {
+		background-color: #675;
+	}
+	/** This is the additional highlighting for text in modified lines */
+	/** TODO there's some potential for some nice styling here, check this out! */
+	.diff-body.diff-sideways tr.diff-type-edit .line-value span.delete, 
+	.diff-body.diff-sideways tr.diff-type-edit .line-value span.insert, 
+	.diff-body.diff-sideways tr.diff-type-edit.line-end-changed .line-value::after {
+		background-color: inherit;
+	}
+	/** COLORED LINES FOR ADD/DELETE */
+
+	/** * * * * * * * * * REVIEW: DIFF VIEWS * * * * * * * * * **/
+
+
+	/** * * * * * * * * * REVIEW: COMMIT POPUP * * * * * * * * **/
+	.modal {
+		background-color: #444;
+	}
+	.modal-footer { 
+		background-color: #333;
+	}
+	.textarea, .input { /** TODO THIS ISN'T WORKING >:( */
+		background-color: bkgCol !important;
+		color: #CCC;
+	}
+
+
+	/* ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ REVIEWS ^ ^ ^ ^ */
+
+	/* v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v DASHBOARD v v v v */
+
+
+	/* Alternating colors for the list of reviews in the dashboard */
+	.table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+		background-color: #333; 
+	}
+
+	/** Table header colors need to be specifically overridden */
+	th, .table th {
+		color: #EEE;
+	}
+
+	/** "There are no reviews currently visible" */
+	.dashboard .table-striped tr.empty td {
+		background-color: #333A33;
+	}
+
+	/** "My Projects" widget on the left */
+	.projects-sidebar tbody {
+		background-color: #111;
+	}
+
+	/* ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ DASHBOARD ^ ^ ^ ^ */
+
+
+	/** TODO DOCUMENT, I think this is showing code in comments */
+	.content-context {
+		color: #000;
+	}
+
+	/** TODO DOCUMENT, this came with the style */
+	.diff-scroll {
+		color: #000;
+	}
+} /* @-moz-document domain("swarm.*.com") */

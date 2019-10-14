@@ -4,22 +4,20 @@
 @version      0.1.0
 @license      MIT-0
 
-@namespace    https://gitlab.com/Kowbell/
+@namespace    https://github.com/Kowbell/
 @author       DJ Schilens foo@bar.com (foobar.com)
-@homepageURL  https://gitlab.com/Kowbell/p4swarmdark
-
+@homepageURL  https://github.com/Kowbell/Userstyle-SwarmDark
+@supportURL   https://github.com/Kowbell/Userstyle-SwarmDark/issues
+@updateURL    https://github.com/Kowbell/Userstyle-SwarmDark/blob/master/main.user.css
 
 @preprocessor stylus
 
 @var color bkgCol "Default Background Color" #222222
 
 ==/UserStyle== */
-
 /**
- * From arvatarox's "Swarm Dark"
- * https://userstyles.org/styles/166448/swarm-dark
- * 
- * See also https://github.com/openstyles/stylus/wiki/UserCSS-authors
+ * Adapted from arvatarox's "Swarm Dark" (https://userstyles.org/styles/166448/swarm-dark)
+ * For editing tips see https://github.com/openstyles/stylus/wiki/UserCSS-authors
  */
 
 /* v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v GENERIC v v v v */

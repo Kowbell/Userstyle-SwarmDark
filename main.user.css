@@ -1,5 +1,5 @@
 /* ==UserStyle==
-@name         Kowbell's Swarm Dark
+@name         Kowbell's Swarm Dark (LOCAL)
 @description  Dark theme for P4 Swarm
 @version      0.1.0
 @license      MIT-0
@@ -10,18 +10,29 @@
 @supportURL   https://github.com/Kowbell/Userstyle-SwarmDark/issues
 @updateURL    https://raw.githubusercontent.com/Kowbell/Userstyle-SwarmDark/master/main.user.css
 
-@preprocessor stylus
+@preprocessor default
 
-@var color bkgCol "Default Background Color" #222222
+@var color bkgCol "Default Background Color" #1e1e1e
+@var color txtCol  "Default Text Color" #d4d4d4
+@var color codeCol "Default Code Color" #d4d4d4
+
+@var color diffAdd-BkgCol     "Diff View: Add: Background"             #4b5632
+@var color diffAddLeft-BkgCol "Diff View: Add: Background (left side)" #373d29
+
+@var color diffDel-BkgCol     "Diff View: Deleted: Background"             #6f1313
+@var color diffDelLeft-BkgCol "Diff View: Deleted: Background (left side)" #4b1818
 
 ==/UserStyle== */
-/**
+
+/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Color scheme based on VS Code's default Dark+ theme
+ * 
  * Adapted from arvatarox's "Swarm Dark" (https://userstyles.org/styles/166448/swarm-dark)
  * For editing tips see https://github.com/openstyles/stylus/wiki/UserCSS-authors
- */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/* v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v GENERIC v v v v */
 @-moz-document regexp(".*swarm\\..*\\.com.*") { /* apply to all swarm.whatever.com pages */
+	/* #region generic ================================================================================ #region generic */
 	body {
 		color: #DDD;
 		background-color: bkgCol;
@@ -71,10 +82,9 @@
 		color: #EEE;
 	}
 
-	/* ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ GENERIC ^ ^ ^ ^ */
+	/* #endregion generic ========================================================================== #endregion generic */
 
-	/* v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v REVIEWS v v v v */
-
+	/* #region reviews ================================================================================ #region reviews */
 
 	/** Nested review comments should have alternating colors */
 	.comments-container .comment-replies .comment-replies-wrapper.odd {
@@ -104,7 +114,7 @@
 	code {
 		border: 1px solid #666;
 		background-color: #333;
-		color: rgb(137, 210, 255); /* vs code default 😎 */
+		color: codeCol;
 		padding: 1px 4px;
 		font-size: 11px; /* there's some padding, so shrink the text */
 	}
@@ -171,7 +181,7 @@
 	/** Diff View content */                                          /** Diff View content */
 	.diff-body.diff-sideways .diff-table {                            /** Code lines */
 		background-color: bkgCol;
-		color: #CCC;
+		color: codeCol;
 	}
 	.diff-body .line-num {                                            /** Line numbers */
 		background-color: bkgCol;
@@ -180,9 +190,6 @@
 		background-color: bkgCol;
 	}
 	/** Diff View content */                                          /** Diff View content */
-
-
-
 
 	/** Highlight lines when you mouse over them */                   /** Mouse-Over Highlights */
 	.diff-body table tr.diff.diff-content:hover td {                  /** Code lines */
@@ -196,20 +203,20 @@
 	/** COLORED LINES FOR ADD/DELETE */
 	/** TODO THESE COLORS SUCK */
 	.diff-body .diff-type-delete .line-value {
-		background-color: #533;
+		background-color: diffDelLeft-BkgCol;
 	}
 	.diff-body .diff-type-delete.diff-type-edit .line-value, 
 	.diff-body.right-side .diff-type-delete .line-value {
-		background-color: #744;
+		background-color: diffDel-BkgCol;
 	}
 	/** Lines marked as add */
 	.diff-body .diff-type-add .line-value {
-		background-color: #353;
+		background-color: diffAdd-BkgCol;
 	}
 	/** Lines marked as add - left side (lighter) */
 	.diff-body .diff-type-add.diff-type-edit .line-value, 
 	.diff-body.left-side .diff-type-add .line-value {
-		background-color: #675;
+		background-color: diffAddLeft-BkgCol;
 	}
 	/** This is the additional highlighting for text in modified lines */
 	/** TODO there's some potential for some nice styling here, check this out! */
@@ -235,11 +242,9 @@
 		color: #CCC;
 	}
 
+	/* #endregion reviews ========================================================================== #endregion reviews */
 
-	/* ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ REVIEWS ^ ^ ^ ^ */
-
-	/* v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v v DASHBOARD v v v v */
-
+	/* #region dashboard ============================================================================ #region dashboard */
 
 	/* Alternating colors for the list of reviews in the dashboard */
 	.table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
@@ -261,8 +266,7 @@
 		background-color: #111;
 	}
 
-	/* ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ DASHBOARD ^ ^ ^ ^ */
-
+	/* #endregion dashboard ====================================================================== #endregion dashboard */
 
 	/** TODO DOCUMENT, I think this is showing code in comments */
 	.content-context {

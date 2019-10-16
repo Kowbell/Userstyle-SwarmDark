@@ -1,5 +1,5 @@
 /* ==UserStyle==
-@name         Kowbell's Swarm Dark (LOCAL)
+@name         Kowbell's Swarm Dark (LOCAL) TODO RENAME
 @description  Dark theme for P4 Swarm
 @version      0.1.0
 @license      MIT-0
@@ -10,11 +10,28 @@
 @supportURL   https://github.com/Kowbell/Userstyle-SwarmDark/issues
 @updateURL    https://raw.githubusercontent.com/Kowbell/Userstyle-SwarmDark/master/main.user.css
 
-@preprocessor default
+@preprocessor stylus
 
-@var color bkgCol "Default Background Color" #1e1e1e
-@var color txtCol  "Default Text Color" #d4d4d4
-@var color codeCol "Default Code Color" #d4d4d4
+@var color bkgCol    "Default Background Color" #1e1e1e
+@var color txtCol    "Default Text Color"       #d4d4d4
+
+@var color bkgColAlt "Alternate Background Color (buttons, dropdowns, etc.)" #2e2e2e
+@var color txtColAlt "Alternate Text Color (buttons, dropdowns, etc.)"       #dfdfdf
+
+@var color bkgColHdr "Header Background Color" #2e2e2e
+@var color txtColHdr "Header Text Color"       #dfdfdf
+
+@var color bkgColHiC "High-Contrast Background Color (editable text areas)" #101010
+@var color txtColHiC "High-Contrast Text Color (editable text areas)"       #f0f0f0
+
+@var color bkgColCode "Default Code Background" #151515
+@var color txtColCode "Default Code Color" #c0c0c0
+
+@var color bkgColCodeAdd "Added Code Background" #4b5632
+@var color txtColCodeAdd "Added Code Color" #c0c0c0
+@var color bkgColCodeRmv "Removed Code Background" #6f1313
+@var color txtColCodeRmv "Removed Code Color" #c0c0c0
+
 
 @var color diffAdd-BkgCol     "Diff View: Add: Background"             #4b5632
 @var color diffAddLeft-BkgCol "Diff View: Add: Background (left side)" #373d29
@@ -34,7 +51,7 @@
 @-moz-document regexp(".*swarm\\..*\\.com.*") { /* apply to all swarm.whatever.com pages */
 	/* #region generic ================================================================================ #region generic */
 	body {
-		color: #DDD;
+		color: txtCol;
 		background-color: bkgCol;
 	}
 
@@ -66,101 +83,106 @@
 	} /* dont invert colored icons */
 
 	.btn {
-		background-color: #444;
-		color: #EEE;
+		background-color: bkgColAlt;
+		color: txtColAlt;
 	}
 
-	.dropdown-menu {
-		background-color: #111;
-	}
+	.dropdown-menu,
 	.dropdown-menu > li > a {
-		color: #CCC;
+		background-color: bkgColAlt;
+		color: txtColAlt;
 	}
 
 	textarea {
-		background-color: #191919;
-		color: #EEE;
+		background-color: bkgColHiC;
+		color: txtColHiC;
 	}
 
 	/* #endregion generic ========================================================================== #endregion generic */
 
+	/* #region dashboard ============================================================================ #region dashboard */
+
+	/* Alternating colors for the list of reviews in the dashboard */
+	.table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+		background-color: bkgColAlt; 
+	}
+
+	/** Table header colors need to be specifically overridden */
+	th, .table th {
+		color: txtColHdr;
+	}
+
+	/** "There are no reviews currently visible" */
+	.dashboard .table-striped tr.empty td {
+		background-color: bkgColAlt;
+	}
+
+	/** "My Projects" widget on the left */
+	.projects-sidebar tbody {
+		background-color: bkgColAlt;
+		color: txtColAlt;
+	}
+
+	/* #endregion dashboard ====================================================================== #endregion dashboard */
+
+
 	/* #region reviews ================================================================================ #region reviews */
+
+	/** Header/footer for the review summary box at the top of the page
+	 * e.g. "Review requested x minutes ago, last updated x minutes ago */
+	.popover.change-info .popover-title, .popover.change-info .popover-footer {
+		background-color: bkgColHdr;
+		color: txtColHdr;
+	}
 
 	/** Nested review comments should have alternating colors */
 	.comments-container .comment-replies .comment-replies-wrapper.odd {
-		background-color: #333;
+		background-color: bkgColAlt;
 	}
 	.comments-container .comment-replies .comment-replies-wrapper.even {
 		background-color: bkgCol;
 	}
 
-	/** Review summary box header/footer */
-	.popover.change-info .popover-title, .popover.change-info .popover-footer {
-		background-color: #333;
-	}
-
-	/** The header for the file-preview-dropdown area */
-	.review-wrapper .version-summary {
-		background-color: #333;
-	}
-
-	/** Comments marked read */
-	.comments-container .comments-table tr.read:not(.closed) td.comment-summary {
-		background-color: #444;
-	}
-
-	/** inlined code in review comments, 
-	 * e.g. "this is my comment text `code code code` blah" */
-	code {
-		border: 1px solid #666;
-		background-color: #333;
-		color: codeCol;
-		padding: 1px 4px;
-		font-size: 11px; /* there's some padding, so shrink the text */
-	}
-
+	/** Selected Files/Comments/History tab */
 	.nav-tabs > .active > a, 
 	.nav-tabs > .active > a:hover, 
 	.nav-tabs > .active > a:focus,
 	.nav-tabs > a, .nav-tabs > a:hover,
 	.nav-tabs > a:focus {
-		background-color: bkgCol;
+		background-color: inherit;
 		color: inherit;
+		border-bottom: 1px bkgCol solid; /* hack; disable this to see why */
 	}
 
-	/** * * * * * * * * * REVIEW: DIFF VIEWS * * * * * * * * * **/
-	/** TODO BORDERS */
-
-	/** I dont think this does anything */
-	/*.diff-body.diff-sideways {
-		background-color: #444;
-	}*/
-
-	/**
-	/** 
-	 * The "filler" bars in the frame around code previews,
-	 * i.e. all the spaces between those "show one more line above/below"
-	 * buttons
-	 */
-	.diff-body tr.diff-type-meta {
-		background-color: bkgCol;
-	}
-	/** The "show one more line above/below" buttons */
-	.diff-body .context-controls .context-icon-container {
-		background-color: bkgCol;
-	}
-	.diff-footer {
-		background-color: bkgCol;
-	}
-	/** archived comments header/button */
-	.comments-container .closed-comments-header {
+	/** Commit popup (TODO COULDNT TEST THIS WHEN I WAS TIDYING UP) */
+	.modal {
 		background-color: #444;
 	}
+	.modal-footer { 
+		background-color: #333;
+	}
+	/* .textarea, .input {
+		background-color: bkgCol !important;
+		color: #CCC;
+	} */
 
-	/** The numbers on the top-right of the changelist,
-	 * for lines edited/added/removed */
-	.file-metrics b {
-		color: #DDD;
+	/* #region reviews: files tab ======================================== #region reviews: files tab */
+
+	/** The header for the file-preview-dropdown area
+	 * This will say something like "Change 12345 shelved into mystream/" */
+	.review-wrapper .version-summary, 
+	.file-metrics b /* those numbers by the edit/add/remove icons on the right */
+	{
+		background-color: bkgColAlt;
+		color: txtColHdr;
+	}
+
+	/** The header/footer "frames" around open files */
+	.diff-body .context-controls .context-icon-container, /* buttons for e.g. show-one-more-line-above */
+	.diff-body tr.diff-type-meta, /* filler space between the buttons */
+	.diff-footer
+	{
+		background-color: bkgColAlt;
 	}
 
 	/** Per-file seperator lines in the changelist view */
@@ -171,17 +193,62 @@
 		border-top-color: #444;
 	}
 
+	/* #endregion reviews: files tab ================================== #endregion reviews: files tab */
+
+
+	/* #region reviews: comments tab ================================= #region reviews: comments tab */
+	
+	/** inlined code in review comments,
+	 * e.g. "this is my comment text `code code code` blah" */
+	code {
+		border: 1px solid #666;
+		background-color: bkgColHiC;
+		color: txtColHiC;
+		padding: 1px 4px;
+		font-size: 11px; /* there's some padding, so shrink the text */
+	}
+
+	/** Comments marked read */
+	.comments-container .comments-table tr.read:not(.closed) td.comment-summary {
+		background-color: inherit;
+	}
+
+	/** archived comments header/button */
+	.comments-container .closed-comments-header {
+		background-color: bkgColHdr;
+		color: txtColHdr;
+	}
+
 	/** Comments Entry */
 	.comments-container .comment-form .textarea-wrapper, 
 	.comments-container .comment-form textarea {
-		background-color: #191919;
-		color: #EEE;
+		background-color: bkgColHiC;
+		color: txtColHiC;
 	}
+
+	/** Previews of the code around inline comments */
+	.content-line-value,
+	.comments-container .content-context .content-line-value {
+		background-color: bkgColCode;
+		color: txtColCode;
+	}
+	.content-line-add {
+		background-color: bkgColCodeAdd!important; 
+		color: txtColCodeAdd !important; 
+	}
+	.content-line-delete {
+		background-color: bkgColCodeRmv !important; 
+		color: txtColCodeRmv !important; 
+	}
+
+	/* #endregion reviews: comments tab =========================== #endregion reviews: comments tab */
+
+
 
 	/** Diff View content */                                          /** Diff View content */
 	.diff-body.diff-sideways .diff-table {                            /** Code lines */
 		background-color: bkgCol;
-		color: codeCol;
+		color: txtColCode;
 	}
 	.diff-body .line-num {                                            /** Line numbers */
 		background-color: bkgCol;
@@ -227,54 +294,15 @@
 	}
 	/** COLORED LINES FOR ADD/DELETE */
 
-	/** * * * * * * * * * REVIEW: DIFF VIEWS * * * * * * * * * **/
-
-
-	/** * * * * * * * * * REVIEW: COMMIT POPUP * * * * * * * * **/
-	.modal {
-		background-color: #444;
-	}
-	.modal-footer { 
-		background-color: #333;
-	}
-	.textarea, .input { /** TODO THIS ISN'T WORKING >:( */
-		background-color: bkgCol !important;
-		color: #CCC;
-	}
-
 	/* #endregion reviews ========================================================================== #endregion reviews */
 
-	/* #region dashboard ============================================================================ #region dashboard */
-
-	/* Alternating colors for the list of reviews in the dashboard */
-	.table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
-		background-color: #333; 
-	}
-
-	/** Table header colors need to be specifically overridden */
-	th, .table th {
-		color: #EEE;
-	}
-
-	/** "There are no reviews currently visible" */
-	.dashboard .table-striped tr.empty td {
-		background-color: #333A33;
-	}
-
-	/** "My Projects" widget on the left */
-	.projects-sidebar tbody {
-		background-color: #111;
-	}
-
-	/* #endregion dashboard ====================================================================== #endregion dashboard */
-
 	/** TODO DOCUMENT, I think this is showing code in comments */
-	.content-context {
-		color: #000;
-	}
+	/* .content-context {
+		color: #f0f;
+	} */
 
 	/** TODO DOCUMENT, this came with the style */
 	.diff-scroll {
-		color: #000;
+		color: #f0f;
 	}
 } /* @-moz-document domain("swarm.*.com") */

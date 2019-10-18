@@ -15,11 +15,16 @@
 @var color bkgCol    "Default Background Color" #1e1e1e
 @var color txtCol    "Default Text Color"       #d4d4d4
 
-@var color bkgColAlt "Alternate Background Color (buttons, dropdowns, etc.)" #2e2e2e
-@var color txtColAlt "Alternate Text Color (buttons, dropdowns, etc.)"       #dfdfdf
+@var color bkgColHdr "Headers Background Color"  #181818
+@var color txtColHdr "Headers Text Color"        #dfdfdf
 
-@var color bkgColHdr "Header Background Color" #2e2e2e
-@var color txtColHdr "Header Text Color"       #dfdfdf
+@var color bkgColInt "Interactives Background Color (buttons, dropdowns, ...)" #2e2e2e
+@var color txtColInt "Interactives Text Color (buttons, dropdowns, ...)"       #dfdfdf
+
+@var color bkgColAlt "Alternating Background Color (e.g. for every other item in a sequence)" #2e2e2e
+@var color txtColAlt "Alternating Text Color (e.g. for every other item in a sequence)"       #dfdfdf
+
+
 
 @var color bkgColHiC "High-Contrast Background Color (editable text areas)" #101010
 @var color txtColHiC "High-Contrast Text Color (editable text areas)"       #f0f0f0
@@ -27,10 +32,12 @@
 @var color bkgColCode "Default Code Background" #151515
 @var color txtColCode "Default Code Color" #c0c0c0
 
-@var color bkgColCodeAdd "Added Code Background" #4b5632
-@var color txtColCodeAdd "Added Code Color" #c0c0c0
-@var color bkgColCodeRmv "Removed Code Background" #6f1313
-@var color txtColCodeRmv "Removed Code Color" #c0c0c0
+
+
+@var color bkgColCodeAdd "Reviews: Added Code Background"   #4b5632
+@var color txtColCodeAdd "Reviews: Added Code Color"        #c0c0c0
+@var color bkgColCodeRmv "Reviews: Removed Code Background" #6f1313
+@var color txtColCodeRmv "Reviews: Removed Code Color"      #c0c0c0
 
 
 @var color diffAdd-BkgCol     "Diff View: Add: Background"             #4b5632
@@ -51,8 +58,8 @@
 @-moz-document regexp(".*swarm\\..*\\.com.*") { /* apply to all swarm.whatever.com pages */
 	/* #region generic ================================================================================ #region generic */
 	body {
-		color: txtCol;
 		background-color: bkgCol;
+		color: txtCol;
 	}
 
 	.login-panel {
@@ -83,14 +90,14 @@
 	} /* dont invert colored icons */
 
 	.btn {
-		background-color: bkgColAlt;
-		color: txtColAlt;
+		background-color: bkgColInt;
+		color: txtColInt;
 	}
 
 	.dropdown-menu,
 	.dropdown-menu > li > a {
-		background-color: bkgColAlt;
-		color: txtColAlt;
+		background-color: bkgcolInt;
+		color: txtcolInt;
 	}
 
 	textarea {
@@ -173,7 +180,7 @@
 	.review-wrapper .version-summary, 
 	.file-metrics b /* those numbers by the edit/add/remove icons on the right */
 	{
-		background-color: bkgColAlt;
+		background-color: bkgColHdr;
 		color: txtColHdr;
 	}
 
@@ -182,7 +189,7 @@
 	.diff-body tr.diff-type-meta, /* filler space between the buttons */
 	.diff-footer
 	{
-		background-color: bkgColAlt;
+		background-color: bkgColHdr;
 	}
 
 	/** Per-file seperator lines in the changelist view */
@@ -202,10 +209,14 @@
 	 * e.g. "this is my comment text `code code code` blah" */
 	code {
 		border: 1px solid #666;
-		background-color: bkgColHiC;
-		color: txtColHiC;
+		background-color: bkgColCode;
+		color: txtColCode;
 		padding: 1px 4px;
 		font-size: 11px; /* there's some padding, so shrink the text */
+	}
+	pre { /* I've only seen <pre> used for multiline code blocks */
+		background-color: bkgColCode;
+		color: txtColCode;
 	}
 
 	/** Comments marked read */

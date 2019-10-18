@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         Kowbell's Swarm Dark (LOCAL) TODO RENAME
 @description  Dark theme for P4 Swarm
-@version      0.1.0
+@version      0.2.0
 @license      MIT-0
 
 @namespace    https://github.com/Kowbell/
@@ -13,16 +13,21 @@
 @preprocessor stylus
 
 @var color bkgCol    "Default Background Color" #1e1e1e
-@var color txtCol    "Default Text Color"       #d4d4d4
+@var color txtCol    "Default Text Color"       #bababa
 
 @var color bkgColHdr "Headers Background Color"  #181818
-@var color txtColHdr "Headers Text Color"        #dfdfdf
+@var color txtColHdr "Headers Text Color"        #bababa
 
 @var color bkgColInt "Interactives Background Color (buttons, dropdowns, ...)" #2e2e2e
-@var color txtColInt "Interactives Text Color (buttons, dropdowns, ...)"       #dfdfdf
+@var color txtColInt "Interactives Text Color (buttons, dropdowns, ...)"       #cacaca
+@var color bkgColIntHov "Interactives Background Color - Hovered" #5e5e5e
+@var color txtColIntHov "Interactives Text Color - Hovered"        #efefef
+@var color bkgColIntAct "Interactives Background Color - Active"  #63a70a
+@var color txtColIntAct "Interactives Text Color - Active"        #efefef
+
 
 @var color bkgColAlt "Alternating Background Color (e.g. for every other item in a sequence)" #2e2e2e
-@var color txtColAlt "Alternating Text Color (e.g. for every other item in a sequence)"       #dfdfdf
+@var color txtColAlt "Alternating Text Color (e.g. for every other item in a sequence)"       #cacaca
 
 
 
@@ -77,6 +82,7 @@
 		filter: invert(1);
 	} /* invert all icons */
 
+	
 	/** Colored icons, like the upvote/downvotes & flagged-as-task icons, should NOT be inverted! */
 	.icon-task-open, .icon-task-addressed, .icon-task-verified,
 	.icon-file-add, .icon-file-edit, .icon-file-delete, 
@@ -89,9 +95,24 @@
 		filter: invert(0);
 	} /* dont invert colored icons */
 
-	.btn {
+	.btn, .input-prepend .add-on {
 		background-color: bkgColInt;
 		color: txtColInt;
+		text-shadow: #222 0px 1px 1px;
+	}
+	.btn.active, .btn:active {
+		background-color: bkgColIntAct;
+		color: txtColIntAct;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(bkgColIntAct, 0.6) !important;
+	}
+	.btn:hover, .btn:focus {
+		background-color: bkgColIntHov;
+		color: txtColIntHov;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(bkgColIntAct, 0.6) !important;
+	}
+	.btn-group.open .btn.dropdown-toggle {
+		background-color: bkgColIntAct !important;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(bkgColIntAct, 0.6) !important;
 	}
 
 	.dropdown-menu,
@@ -99,11 +120,26 @@
 		background-color: bkgcolInt;
 		color: txtcolInt;
 	}
+	/** Hovered/selected dropdown items should use the 'interactive highlight' col */
+	.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+		background-color: bkgColIntAct !important;
+	}
 
-	textarea {
+	/** Interactive text fields (comment entries, search boxes) */
+	textarea, input[type="text"] {
 		background-color: bkgColHiC;
 		color: txtColHiC;
 	}
+	/** The glow around selected text inputs */
+	textarea:focus, input:focus {
+		border-color: bkgColIntAct !important;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(bkgColIntAct, 0.6) !important;
+	}
+	/** Also set the nav bar stripe color */
+	.navbar-inverse .navbar-inner, .navbar-inverse .navbar-inner, .navbar-site .nav .active > a {
+		border-bottom: solid 4px bkgColIntAct;
+	}
+	
 
 	/* #endregion generic ========================================================================== #endregion generic */
 
